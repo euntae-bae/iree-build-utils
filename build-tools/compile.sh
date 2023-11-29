@@ -2,8 +2,8 @@
 
 set -e
 
-SRC_PATH=mlir
-DEST_PATH=build
+SRC_PATH=mlir/
+DEST_PATH=build/
 MLIR_SRC_NAME=simple_abs
 IREE_HAL_TARGET="llvm-cpu"
 
@@ -13,7 +13,7 @@ if [ $# -eq 2 ]; then
     IREE_HAL_TARGET=$2
 fi
 
-echo "Input source file: ${MLIR_SRC_NAME}.mlir"
+echo "Input source file: ${SRC_PATH}${MLIR_SRC_NAME}.mlir"
 echo -e "HAL target backend: ${IREE_HAL_TARGET}\n"
 
 IREE_FLAGS="--iree-hal-target-backends=${IREE_HAL_TARGET}"
@@ -45,21 +45,21 @@ echo -e "HAL_TARGET_SUFFIX: ${HAL_TARGET_SUFFIX}\n"
 
 # HAL backend independant MLIR code generation
 echo "HAL backend independant MLIR code generation"
-iree-compile ${MLIR_SRC_NAME}.mlir --compile-to=flow   -o ${MLIR_SRC_NAME}_flow.mlir
-echo ">> ${MLIR_SRC_NAME}_flow.mlir is generated"
-iree-compile ${MLIR_SRC_NAME}.mlir --compile-to=stream -o ${MLIR_SRC_NAME}_stream.mlir
-echo -e ">> ${MLIR_SRC_NAME}_stream.mlir is generated\n"
+iree-compile ${SRC_PATH}${MLIR_SRC_NAME}.mlir --compile-to=flow -o ${DEST_PATH}${MLIR_SRC_NAME}_flow.mlir
+echo ">> ${DEST_PATH}/${MLIR_SRC_NAME}_flow.mlir is generated"
+iree-compile ${SRC_PATH}${MLIR_SRC_NAME}.mlir --compile-to=stream -o ${DEST_PATH}${MLIR_SRC_NAME}_stream.mlir
+echo -e ">> ${DEST_PATH}${MLIR_SRC_NAME}_stream.mlir is generated\n"
 
 for LEVEL in "${IREE_COMPILE_LEVELS[@]}"
 do
     echo "Compile level: ${LEVEL}"
-    OUTPUT_TARGET=${MLIR_SRC_NAME}_${HAL_TARGET_SUFFIX}_${LEVEL}.mlir
-    iree-compile ${MLIR_SRC_NAME}.mlir ${IREE_FLAGS} --compile-to=${LEVEL} -o ${OUTPUT_TARGET}
+    OUTPUT_TARGET=${DEST_PATH}${MLIR_SRC_NAME}_${HAL_TARGET_SUFFIX}_${LEVEL}.mlir
+    iree-compile ${SRC_PATH}${MLIR_SRC_NAME}.mlir ${IREE_FLAGS} --compile-to=${LEVEL} -o ${OUTPUT_TARGET}
     echo ">> ${OUTPUT_TARGET} is generated"
 done
 
-OUTPUT_TARGET=${MLIR_SRC_NAME}_${HAL_TARGET_SUFFIX}.vmfb
-iree-compile ${MLIR_SRC_NAME}.mlir ${IREE_FLAGS} -o ${OUTPUT_TARGET}
+OUTPUT_TARGET=${DEST_PATH}${MLIR_SRC_NAME}_${HAL_TARGET_SUFFIX}.vmfb
+iree-compile ${SRC_PATH}${MLIR_SRC_NAME}.mlir ${IREE_FLAGS} -o ${OUTPUT_TARGET}
 echo ">> VM bytecode module ${OUTPUT_TARGET} is generated"
 
 
