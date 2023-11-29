@@ -1,0 +1,107 @@
+
+elementwise_mul_riscv_64.so:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+00000000000012bc <iree_hal_executable_library_query-0x116>:
+    12bc:	1141                	add	sp,sp,-16
+    12be:	e406                	sd	ra,8(sp)
+    12c0:	e022                	sd	s0,0(sp)
+    12c2:	0800                	add	s0,sp,16
+    12c4:	0005e283          	lwu	t0,0(a1)
+    12c8:	00066503          	lwu	a0,0(a2)
+    12cc:	02550e33          	mul	t3,a0,t0
+    12d0:	450d                	li	a0,3
+    12d2:	0fc54b63          	blt	a0,t3,13c8 <iree_hal_executable_library_query-0xa>
+    12d6:	7188                	ld	a0,32(a1)
+    12d8:	00c5e583          	lwu	a1,12(a1)
+    12dc:	6110                	ld	a2,0(a0)
+    12de:	6914                	ld	a3,16(a0)
+    12e0:	6508                	ld	a0,8(a0)
+    12e2:	02558833          	mul	a6,a1,t0
+    12e6:	002e1593          	sll	a1,t3,0x2
+    12ea:	00b68fb3          	add	t6,a3,a1
+    12ee:	00281313          	sll	t1,a6,0x2
+    12f2:	00b50733          	add	a4,a0,a1
+    12f6:	00b60533          	add	a0,a2,a1
+    12fa:	4891                	li	a7,4
+    12fc:	a039                	j	130a <iree_hal_executable_library_query-0xc8>
+    12fe:	9e42                	add	t3,t3,a6
+    1300:	9f9a                	add	t6,t6,t1
+    1302:	971a                	add	a4,a4,t1
+    1304:	951a                	add	a0,a0,t1
+    1306:	0d1e5163          	bge	t3,a7,13c8 <iree_hal_executable_library_query-0xa>
+    130a:	41c88eb3          	sub	t4,a7,t3
+    130e:	005ec363          	blt	t4,t0,1314 <iree_hal_executable_library_query-0xbe>
+    1312:	8e96                	mv	t4,t0
+    1314:	43fed593          	sra	a1,t4,0x3f
+    1318:	01d5c633          	xor	a2,a1,t4
+    131c:	43f65693          	sra	a3,a2,0x3f
+    1320:	92f9                	srl	a3,a3,0x3e
+    1322:	9636                	add	a2,a2,a3
+    1324:	8609                	sra	a2,a2,0x2
+    1326:	00b643b3          	xor	t2,a2,a1
+    132a:	00239f13          	sll	t5,t2,0x2
+    132e:	04705c63          	blez	t2,1386 <iree_hal_executable_library_query-0x4c>
+    1332:	4601                	li	a2,0
+    1334:	85aa                	mv	a1,a0
+    1336:	87ba                	mv	a5,a4
+    1338:	86fe                	mv	a3,t6
+    133a:	00c5a007          	flw	ft0,12(a1)
+    133e:	0085a087          	flw	ft1,8(a1)
+    1342:	0045a107          	flw	ft2,4(a1)
+    1346:	0005a187          	flw	ft3,0(a1)
+    134a:	0007a207          	flw	ft4,0(a5)
+    134e:	0047a287          	flw	ft5,4(a5)
+    1352:	0087a307          	flw	ft6,8(a5)
+    1356:	00c7a387          	flw	ft7,12(a5)
+    135a:	1041f1d3          	fmul.s	ft3,ft3,ft4
+    135e:	10517153          	fmul.s	ft2,ft2,ft5
+    1362:	1060f0d3          	fmul.s	ft1,ft1,ft6
+    1366:	10707053          	fmul.s	ft0,ft0,ft7
+    136a:	0006a627          	fsw	ft0,12(a3)
+    136e:	0016a427          	fsw	ft1,8(a3)
+    1372:	0026a227          	fsw	ft2,4(a3)
+    1376:	0036a027          	fsw	ft3,0(a3)
+    137a:	0611                	add	a2,a2,4
+    137c:	06c1                	add	a3,a3,16
+    137e:	07c1                	add	a5,a5,16
+    1380:	05c1                	add	a1,a1,16
+    1382:	fbe64ce3          	blt	a2,t5,133a <iree_hal_executable_library_query-0x98>
+    1386:	f7df5ce3          	bge	t5,t4,12fe <iree_hal_executable_library_query-0xd4>
+    138a:	0392                	sll	t2,t2,0x4
+    138c:	a029                	j	1396 <iree_hal_executable_library_query-0x3c>
+    138e:	0f11                	add	t5,t5,4
+    1390:	03c1                	add	t2,t2,16
+    1392:	f7df56e3          	bge	t5,t4,12fe <iree_hal_executable_library_query-0xd4>
+    1396:	41ee85b3          	sub	a1,t4,t5
+    139a:	feb05ae3          	blez	a1,138e <iree_hal_executable_library_query-0x44>
+    139e:	4681                	li	a3,0
+    13a0:	879e                	mv	a5,t2
+    13a2:	00f50633          	add	a2,a0,a5
+    13a6:	00062007          	flw	ft0,0(a2)
+    13aa:	00f70633          	add	a2,a4,a5
+    13ae:	00062087          	flw	ft1,0(a2)
+    13b2:	10107053          	fmul.s	ft0,ft0,ft1
+    13b6:	00ff8633          	add	a2,t6,a5
+    13ba:	00062027          	fsw	ft0,0(a2)
+    13be:	0685                	add	a3,a3,1
+    13c0:	0791                	add	a5,a5,4
+    13c2:	feb6c0e3          	blt	a3,a1,13a2 <iree_hal_executable_library_query-0x30>
+    13c6:	b7e1                	j	138e <iree_hal_executable_library_query-0x44>
+    13c8:	4501                	li	a0,0
+    13ca:	60a2                	ld	ra,8(sp)
+    13cc:	6402                	ld	s0,0(sp)
+    13ce:	0141                	add	sp,sp,16
+    13d0:	8082                	ret
+
+00000000000013d2 <iree_hal_executable_library_query>:
+    13d2:	2501                	sext.w	a0,a0
+    13d4:	458d                	li	a1,3
+    13d6:	00b50463          	beq	a0,a1,13de <iree_hal_executable_library_query+0xc>
+    13da:	4501                	li	a0,0
+    13dc:	8082                	ret
+    13de:	00001517          	auipc	a0,0x1
+    13e2:	03250513          	add	a0,a0,50 # 2410 <iree_hal_executable_library_query+0x103e>
+    13e6:	8082                	ret
