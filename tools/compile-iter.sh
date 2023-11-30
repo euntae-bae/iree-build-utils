@@ -33,11 +33,11 @@ fi
 for HAL_TARGET in ${IREE_HAL_TARGETS[@]}
 do
     echo -e "\e[1;32m## compile the ${MLIR_SRC_NAME}.mlir (hal backend: ${HAL_TARGET}) ##\e[0m"
-    build-tools/compile.sh ${MLIR_SRC_NAME} ${HAL_TARGET}
+    tools/compile.sh ${MLIR_SRC_NAME} ${HAL_TARGET}
     UNPACK_TARGET=${MLIR_SRC_NAME}_${HAL_TARGET}
     if [ ${HAL_TARGET} = "llvm-cpu" ]; then
         UNPACK_TARGET=${MLIR_SRC_NAME}_${HAL_TARGET}_rv32imf
     fi
     echo -e "\e[1;32m## unpack the ${UNPACK_TARGET}.vmfb ##\e[0m"
-    build-tools/unpack.sh ${UNPACK_TARGET}
+    tools/unpack.sh ${UNPACK_TARGET}
 done

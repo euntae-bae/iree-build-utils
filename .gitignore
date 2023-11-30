@@ -3,8 +3,8 @@ activate.sh
 iree-help.txt
 
 build/*
-build-tools/cleanup.sh
-build-tools/simple_abs.sh
-build-tools/*.mlir
+tools/cleanup.sh
+tools/simple_abs.sh
+tools/*.mlir
 
 samples/

@@ -17,7 +17,7 @@ $ python -m pip install -r requirements.txt
 ## Build tools usage
 ### compile.sh
 ```bash
-$ build-tools/compile.sh [<mlir_src_name> <iree_hal_target_backend>]
+$ ./tools/compile.sh [<mlir_src_name> <iree_hal_target_backend>]
 ```
 
 The mlir_src_name defaults to `simple_abs`
@@ -27,7 +27,7 @@ The source and destination directories are fixed to mlir/ and build/, respective
 
 For example, if you want to compile `your_model.mlir` with the `vulkan-spirv` HAL backend, type:
 ```bash
-$ ./build-tools/compile.sh your_model vulkan-spirv
+$ ./tools/compile.sh your_model vulkan-spirv
 ```
 You should specify only source file name without extension (.mlir)
 
@@ -39,7 +39,7 @@ $ iree-compile --iree-hal-list-target-backends
 
 ### unpack.sh
 ```bash
-$ build-tools/unpack.sh [<iree_module_name>]
+$ ./tools/unpack.sh [<iree_module_name>]
 ```
 
 Decompose the specified IREE bytecode module (.vmfb) and generate dump files for each component
@@ -53,7 +53,7 @@ The generated dump files will have the suffix `_dump.txt`
 
 ### compile-iter.sh
 ```bash
-$ build-tools/compile-iter.sh [<mlir_src_name>]
+$ ./tools/compile-iter.sh [<mlir_src_name>]
 ```
 
 Run compile.sh repeatedly on all available HAL backends for the specified model. Then run `unpack.sh` targeting the generated IREE Flatbuffer module (.vmfb)
