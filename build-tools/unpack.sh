@@ -10,6 +10,7 @@ DUMP_FILE_SUFFIX=_dump.txt
 
 set -e
 
+# usage: unpack.sh [<IREE_MODULE_NAME>]
 if [ $# -eq 1 ]; then
     IREE_MODULE_NAME=$1
 fi

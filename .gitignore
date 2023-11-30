@@ -1,3 +1,10 @@
 iree-pytorch.venv/
-build/
+activate.sh
+iree-help.txt
 
+build/*
+build-tools/cleanup.sh
+build-tools/simple_abs.sh
+build-tools/*.mlir
+
+samples/

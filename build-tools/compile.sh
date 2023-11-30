@@ -7,7 +7,7 @@ DEST_PATH=build/
 MLIR_SRC_NAME=simple_abs
 IREE_HAL_TARGET="llvm-cpu"
 
-# usage: compile.sh [<MLIR_SRC> <IREE_HAL_TARGET_BACKEND>]
+# usage: compile.sh [<MLIR_SRC_NAME> <IREE_HAL_TARGET_BACKEND>]
 if [ $# -eq 2 ]; then
     MLIR_SRC_NAME=$1
     IREE_HAL_TARGET=$2

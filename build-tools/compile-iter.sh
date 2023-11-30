@@ -25,6 +25,7 @@ IREE_HAL_TARGETS=( \
 "vulkan" \
 "vulkan-spirv")
 
+# usage: compile-iter.sh [<MLIR_SRC_NAME>]
 if [ $# -eq 1 ]; then
     MLIR_SRC_NAME=$1
 fi
